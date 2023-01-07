@@ -15,20 +15,20 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth")
 # encode token function
 
 
-# def generate_token(user_id: int, email: str, activated: bool):
-#     expiration = time.time() + settings.expiration_minutes * 60
-#     payload = {"user_id": user_id, "email": email,
-#                "activated": activated, "expiration": expiration}
-#     encoded_jwt = jwt.encode(payload, SERVER_KEY, algorithm=ALGORITHM)
-#     return Token(access_token=encoded_jwt, token_type="bearer")
+def generate_token(user_id: int, email: str, activated: bool):
+    expiration = time.time() + settings.expiration_minutes * 60
+    payload = {"user_id": user_id, "email": email,
+               "activated": activated, "expiration": expiration}
+    encoded_jwt = jwt.encode(payload, SERVER_KEY, algorithm=ALGORITHM)
+    return {"access_token": encoded_jwt, "token_type": "bearer"}
 
 
-# def generate_validation_token(user_id: int, email: str, random_text: str, minutes: int = 43200):
-#     expiration = time.time() + minutes * 60
-#     payload = {"user_id": user_id, "email": email,
-#                "token": random_text, "expiration": expiration}
-#     encoded_jwt = jwt.encode(payload, SERVER_KEY, algorithm=ALGORITHM)
-#     return encoded_jwt
+def generate_validation_token(user_id: int, email: str, random_text: str, minutes: int = 43200):
+    expiration = time.time() + minutes * 60
+    payload = {"user_id": user_id, "email": email,
+               "token": random_text, "expiration": expiration}
+    encoded_jwt = jwt.encode(payload, SERVER_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
 
 # decode token function
 
