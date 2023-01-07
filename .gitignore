@@ -1,2 +1,4 @@
 .env
-vertual
+venv
+__pycache__
+.deta
